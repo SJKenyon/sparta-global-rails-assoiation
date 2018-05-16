@@ -1,0 +1,631 @@
+  [1m[35m (567.8ms)[0m  [1m[35mCREATE DATABASE "hwk_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:4
+  [1m[35m (508.8ms)[0m  [1m[35mCREATE DATABASE "hwk_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:4
+  [1m[35m (17.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:4
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7484919381808948800)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Migrating to CreateUsers (20180516171933)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (12.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "age" integer, "school" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180516171933_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180516171933"]]
+  ↳ bin/rails:4
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateDoctors (20180516172010)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE "doctors" ("id" bigserial primary key, "name" character varying, "age" integer, "nurse" boolean, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20180516172010_create_doctors.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180516172010"]]
+  ↳ bin/rails:4
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+Migrating to CreateAppointments (20180516172717)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (18.1ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" bigserial primary key, "reason" character varying, "length" integer, "important" boolean, "User_id" bigint, "doctor_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_3ed8d82530"
+FOREIGN KEY ("User_id")
+  REFERENCES "Users" ("id")
+, CONSTRAINT "fk_rails_8db8e1e8a5"
+FOREIGN KEY ("doctor_id")
+  REFERENCES "doctors" ("id")
+)[0m
+  ↳ db/migrate/20180516172717_create_appointments.rb:3
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ bin/rails:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(7484919381808948800)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7484919381808948800)[0m
+  ↳ bin/rails:4
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Migrating to CreateAppointments (20180516172854)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[35m (24.3ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" bigserial primary key, "reason" character varying, "length" integer, "important" boolean, "user_id" bigint, "doctor_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_9e31213785"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_8db8e1e8a5"
+FOREIGN KEY ("doctor_id")
+  REFERENCES "doctors" ("id")
+)[0m
+  ↳ db/migrate/20180516172854_create_appointments.rb:3
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE  INDEX  "index_appointments_on_user_id" ON "appointments"  ("user_id")[0m
+  ↳ db/migrate/20180516172854_create_appointments.rb:3
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE  INDEX  "index_appointments_on_doctor_id" ON "appointments"  ("doctor_id")[0m
+  ↳ db/migrate/20180516172854_create_appointments.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180516172854"]]
+  ↳ bin/rails:4
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Load (3.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:4
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:4
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-05-16 17:28:59.482165"], ["updated_at", "2018-05-16 17:28:59.482165"]]
+  ↳ bin/rails:4
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:4
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(7484919381808948800)[0m
+  ↳ bin/rails:4
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:4
+Started GET "/appointments" for 127.0.0.1 at 2018-05-16 18:29:22 +0100
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /usr/local/lib/ruby/gems/2.5.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by AppointmentsController#index as HTML
+  Rendering appointments/index.html.erb within layouts/application
+  [1m[36mAppointment Load (4.7ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments"[0m
+  ↳ app/views/appointments/index.html.erb:18
+  Rendered appointments/index.html.erb within layouts/application (14.7ms)
+Completed 200 OK in 1205ms (Views: 1153.5ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 18:29:27 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (94.9ms)
+  Rendered appointments/new.html.erb within layouts/application (103.2ms)
+Completed 200 OK in 240ms (Views: 179.6ms | ActiveRecord: 12.9ms)
+
+
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 18:34:19 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (11.1ms)
+  Rendered appointments/new.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 129ms (Views: 118.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/user" for 127.0.0.1 at 2018-05-16 18:34:31 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/user"):
+  
+actionpack (5.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.0) lib/rails/engine.rb:524:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users" for 127.0.0.1 at 2018-05-16 18:56:11 +0100
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (4.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:16
+  Rendered users/index.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 144ms (Views: 78.9ms | ActiveRecord: 8.8ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2018-05-16 18:56:16 +0100
+Processing by UsersController#new as HTML
+Started GET "/users/new" for 127.0.0.1 at 2018-05-16 18:56:16 +0100
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (2.4ms)
+  Rendered users/new.html.erb within layouts/application (10.6ms)
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (2.8ms)
+  Rendered users/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 117ms (Views: 81.1ms | ActiveRecord: 14.3ms)
+
+
+Completed 200 OK in 102ms (Views: 77.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-05-16 18:56:35 +0100
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zOZvIffQdt9j/AGHYc2A7v4pHW8pFHMu5hwN5U5He6Pm2lB6qoy3t5ASrHohB+5RSdbRsvDQGeTMAbGkNal3Eg==", "user"=>{"name"=>"Sophie", "age"=>"21", "school"=>"0"}, "commit"=>"Create User"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:38
+  [1m[36mUser Create (4.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "school", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Sophie"], ["age", 21], ["school", false], ["created_at", "2018-05-16 17:56:35.627236"], ["updated_at", "2018-05-16 17:56:35.627236"]]
+  ↳ app/controllers/users_controller.rb:38
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:38
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 15ms (ActiveRecord: 7.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-05-16 18:56:39 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:75
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 52ms (Views: 30.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-05-16 18:56:43 +0100
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:16
+  Rendered users/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 47ms (Views: 42.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2018-05-16 18:57:03 +0100
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (3.1ms)
+  Rendered users/new.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 59ms (Views: 54.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-05-16 18:57:28 +0100
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"U9jAzgSm3AJA+qXJiWAY3IugDGrmrzYjezz32i4OjSF55P+VWfodarMUCDTJqnZjPF/Atz9rXOlRIUubVeCBkA==", "user"=>{"name"=>"Rachel", "age"=>"19", "school"=>"1"}, "commit"=>"Create User"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:38
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "school", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Rachel"], ["age", 19], ["school", true], ["created_at", "2018-05-16 17:57:28.042155"], ["updated_at", "2018-05-16 17:57:28.042155"]]
+  ↳ app/controllers/users_controller.rb:38
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:38
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 9ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2018-05-16 18:57:28 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:75
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 33ms (Views: 28.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/doctors" for 127.0.0.1 at 2018-05-16 18:57:43 +0100
+Processing by DoctorsController#index as HTML
+  Rendering doctors/index.html.erb within layouts/application
+  [1m[36mDoctor Load (2.9ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/doctors/index.html.erb:16
+  Rendered doctors/index.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 58ms (Views: 42.5ms | ActiveRecord: 8.2ms)
+
+
+Started GET "/doctors/new" for 127.0.0.1 at 2018-05-16 18:57:58 +0100
+Processing by DoctorsController#new as HTML
+  Rendering doctors/new.html.erb within layouts/application
+  Rendered doctors/_form.html.erb (4.5ms)
+  Rendered doctors/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 65ms (Views: 47.2ms | ActiveRecord: 6.4ms)
+
+
+Started POST "/doctors" for 127.0.0.1 at 2018-05-16 18:58:14 +0100
+Processing by DoctorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"O9nlnvfjZv4UGONBs9+Z3rqc5rC0+pHGC2C9153/wchGGS+M0HKldBMuu4STrUUZYaYjJMyi4Z17VVvF4ZinZA==", "doctor"=>{"name"=>"Helen", "age"=>"31", "nurse"=>"1"}, "commit"=>"Create Doctor"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/doctors_controller.rb:38
+  [1m[36mDoctor Create (3.7ms)[0m  [1m[32mINSERT INTO "doctors" ("name", "age", "nurse", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Helen"], ["age", 31], ["nurse", true], ["created_at", "2018-05-16 17:58:14.459208"], ["updated_at", "2018-05-16 17:58:14.459208"]]
+  ↳ app/controllers/doctors_controller.rb:38
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/doctors_controller.rb:38
+Redirected to http://localhost:3000/doctors/1
+Completed 302 Found in 14ms (ActiveRecord: 6.7ms)
+
+
+Started GET "/doctors/1" for 127.0.0.1 at 2018-05-16 18:58:18 +0100
+Processing by DoctorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDoctor Load (0.5ms)[0m  [1m[34mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/doctors_controller.rb:75
+  Rendering doctors/show.html.erb within layouts/application
+  Rendered doctors/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 40ms (Views: 31.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/doctors" for 127.0.0.1 at 2018-05-16 18:58:25 +0100
+Processing by DoctorsController#index as HTML
+  Rendering doctors/index.html.erb within layouts/application
+  [1m[36mDoctor Load (0.5ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/doctors/index.html.erb:16
+  Rendered doctors/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 41ms (Views: 35.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/doctors/new" for 127.0.0.1 at 2018-05-16 18:58:31 +0100
+Processing by DoctorsController#new as HTML
+  Rendering doctors/new.html.erb within layouts/application
+  Rendered doctors/_form.html.erb (3.0ms)
+  Rendered doctors/new.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 54ms (Views: 49.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/doctors" for 127.0.0.1 at 2018-05-16 18:58:50 +0100
+Processing by DoctorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/TfdJIIQ3gJxb9z+9NegCxSE0uQO3+a6k4HWE03ti+OA9xc2pYEdiHZZhDvUpXzMz74XcHaHluHjtDABMYrtTw==", "doctor"=>{"name"=>"Jonny", "age"=>"29", "nurse"=>"0"}, "commit"=>"Create Doctor"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/doctors_controller.rb:38
+  [1m[36mDoctor Create (0.4ms)[0m  [1m[32mINSERT INTO "doctors" ("name", "age", "nurse", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Jonny"], ["age", 29], ["nurse", false], ["created_at", "2018-05-16 17:58:50.758095"], ["updated_at", "2018-05-16 17:58:50.758095"]]
+  ↳ app/controllers/doctors_controller.rb:38
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/doctors_controller.rb:38
+Redirected to http://localhost:3000/doctors/2
+Completed 302 Found in 8ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/doctors/2" for 127.0.0.1 at 2018-05-16 18:58:50 +0100
+Processing by DoctorsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDoctor Load (0.4ms)[0m  [1m[34mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/doctors_controller.rb:75
+  Rendering doctors/show.html.erb within layouts/application
+  Rendered doctors/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 38ms (Views: 33.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/doctors" for 127.0.0.1 at 2018-05-16 18:58:54 +0100
+Processing by DoctorsController#index as HTML
+  Rendering doctors/index.html.erb within layouts/application
+  [1m[36mDoctor Load (0.5ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/doctors/index.html.erb:16
+  Rendered doctors/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 43ms (Views: 37.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/appointments" for 127.0.0.1 at 2018-05-16 18:59:07 +0100
+Processing by AppointmentsController#index as HTML
+  Rendering appointments/index.html.erb within layouts/application
+  [1m[36mAppointment Load (1.0ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments"[0m
+  ↳ app/views/appointments/index.html.erb:18
+  Rendered appointments/index.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 49ms (Views: 38.0ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 18:59:12 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/appointments/_form.html.erb:31
+  [1m[36mDoctor Load (0.5ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/appointments/_form.html.erb:37
+  Rendered appointments/_form.html.erb (15.0ms)
+  Rendered appointments/new.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 89ms (Views: 68.7ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 18:59:39 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/appointments/_form.html.erb:31
+  [1m[36mDoctor Load (0.5ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/appointments/_form.html.erb:36
+  Rendered appointments/_form.html.erb (8.1ms)
+  Rendered appointments/new.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 63ms (Views: 54.9ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/appointments" for 127.0.0.1 at 2018-05-16 18:59:57 +0100
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8ZXMuQEYi1UBco1J53N8EnzYKSCSTVU56ZrTK85UcJC/meH4BP1rDyJ1ubcpbHhcOGQWI2mHkLXwCUS/FHfW4A==", "appointment"=>{"reason"=>"Stuff", "length"=>"5", "important"=>"0"}, "user"=>{"user_id"=>"1"}, "doctor"=>{"doctor"=>"1"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (7.7ms)
+  Rendered appointments/new.html.erb within layouts/application (13.9ms)
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    28: 
+    29:   <div class="field">
+    30:     <%= form.label :user_id %>
+    31:     <%= collection_select(:user, :user_id, @users, :id, :name) %>
+    32:   </div>
+    33: 
+    34:   <div class="field">
+  
+app/views/appointments/_form.html.erb:31:in `block in _app_views_appointments__form_html_erb__2269926794720585060_70138013090060'
+app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__2269926794720585060_70138013090060'
+app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___3898095765473304186_70138017944360'
+app/controllers/appointments_controller.rb:42:in `block (2 levels) in create'
+app/controllers/appointments_controller.rb:37:in `create'
+Started POST "/appointments" for 127.0.0.1 at 2018-05-16 19:06:07 +0100
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8ZXMuQEYi1UBco1J53N8EnzYKSCSTVU56ZrTK85UcJC/meH4BP1rDyJ1ubcpbHhcOGQWI2mHkLXwCUS/FHfW4A==", "appointment"=>{"reason"=>"Stuff", "length"=>"5", "important"=>"0"}, "user"=>{"user_id"=>"1"}, "doctor"=>{"doctor"=>"1"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (7.0ms)
+  Rendered appointments/new.html.erb within layouts/application (11.6ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    28: 
+    29:   <div class="field">
+    30:     <%= form.label :user_id %>
+    31:     <%= collection_select(:user, :user_id, @users, :id, :name) %>
+    32:   </div>
+    33: 
+    34:   <div class="field">
+  
+app/views/appointments/_form.html.erb:31:in `block in _app_views_appointments__form_html_erb__2269926794720585060_70138018827260'
+app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__2269926794720585060_70138018827260'
+app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___3898095765473304186_70138013982260'
+app/controllers/appointments_controller.rb:42:in `block (2 levels) in create'
+app/controllers/appointments_controller.rb:37:in `create'
+Started GET "/appointments" for 127.0.0.1 at 2018-05-16 19:06:12 +0100
+Processing by AppointmentsController#index as HTML
+  Rendering appointments/index.html.erb within layouts/application
+  [1m[36mAppointment Load (1.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments"[0m
+  ↳ app/views/appointments/index.html.erb:18
+  Rendered appointments/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 85ms (Views: 78.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 19:06:18 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/appointments/_form.html.erb:31
+  [1m[36mDoctor Load (0.8ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/appointments/_form.html.erb:36
+  Rendered appointments/_form.html.erb (11.6ms)
+  Rendered appointments/new.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 56ms (Views: 48.2ms | ActiveRecord: 3.3ms)
+
+
+Started POST "/appointments" for 127.0.0.1 at 2018-05-16 19:07:32 +0100
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2cXOzKjMMBmcfaJ5Q4PNT3/PiLzilPMM+yoUp6L54R8ioRHJ1jJAbyB17oH643SLSIm8L7hZ2jNDBB7UUkdEeA==", "appointment"=>{"reason"=>"Stuff", "length"=>"5", "important"=>"0"}, "user"=>{"user_id"=>"1"}, "doctor"=>{"doctor_id"=>"1"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (5.9ms)
+  Rendered appointments/new.html.erb within layouts/application (10.7ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    28: 
+    29:   <div class="field">
+    30:     <%= form.label :user_id %>
+    31:     <%= collection_select(:user, :user_id, @users, :id, :name) %>
+    32:   </div>
+    33: 
+    34:   <div class="field">
+  
+app/views/appointments/_form.html.erb:31:in `block in _app_views_appointments__form_html_erb__2269926794720585060_70137980269900'
+app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__2269926794720585060_70137980269900'
+app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___3898095765473304186_70137980330420'
+app/controllers/appointments_controller.rb:42:in `block (2 levels) in create'
+app/controllers/appointments_controller.rb:37:in `create'
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 19:21:09 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/appointments/_form.html.erb:31
+  [1m[36mDoctor Load (0.7ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/appointments/_form.html.erb:36
+  Rendered appointments/_form.html.erb (6.3ms)
+  Rendered appointments/new.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 105ms (Views: 99.9ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/appointments" for 127.0.0.1 at 2018-05-16 19:21:53 +0100
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gLqrPR1VhFJ3+dLp+61FcALHvQeUtqBLH9rgHn28MAjOtoZ8GLBkCFT+5hc1skE+RnuCBG98ZccGSXeKp5+WeA==", "appointment"=>{"reason"=>"Stuff", "length"=>"5", "important"=>"0"}, "doctor"=>{"user_id"=>"1"}, "user"=>{"doctor_id"=>"1"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (8.5ms)
+  Rendered appointments/new.html.erb within layouts/application (14.3ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    28: 
+    29:   <div class="field">
+    30:     <%= form.label :user_id %>
+    31:     <%= collection_select(:doctor, :user_id, @users, :id, :name) %>
+    32:   </div>
+    33: 
+    34:   <div class="field">
+  
+app/views/appointments/_form.html.erb:31:in `block in _app_views_appointments__form_html_erb__2269926794720585060_70138016352960'
+app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__2269926794720585060_70138016352960'
+app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___3898095765473304186_70138016373740'
+app/controllers/appointments_controller.rb:42:in `block (2 levels) in create'
+app/controllers/appointments_controller.rb:37:in `create'
+Started GET "/appointments" for 127.0.0.1 at 2018-05-16 20:00:33 +0100
+Processing by AppointmentsController#index as HTML
+  Rendering appointments/index.html.erb within layouts/application
+  [1m[36mAppointment Load (4.6ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments"[0m
+  ↳ app/views/appointments/index.html.erb:18
+  Rendered appointments/index.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 168ms (Views: 150.0ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 20:00:45 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/appointments/_form.html.erb:31
+  [1m[36mDoctor Load (0.8ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/appointments/_form.html.erb:36
+  Rendered appointments/_form.html.erb (18.4ms)
+  Rendered appointments/new.html.erb within layouts/application (24.9ms)
+Completed 200 OK in 87ms (Views: 74.4ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/appointments" for 127.0.0.1 at 2018-05-16 20:00:57 +0100
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vUbGK/NYs/HrklyXpHLSMIxgWsnhYh2/G4JEx9eFAZY5Fv2dLsWPEquFwJIdJqgtgPy52oNmxXzjHPoEKOpgFQ==", "appointment"=>{"reason"=>"Stuff", "length"=>"5", "important"=>"1"}, "doctor"=>{"user_id"=>"1"}, "user"=>{"doctor_id"=>"1"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (10.6ms)
+  Rendered appointments/new.html.erb within layouts/application (14.9ms)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    28: 
+    29:   <div class="field">
+    30:     <%= form.label :user_id %>
+    31:     <%= collection_select(:doctor, :user_id, @users, :id, :name) %>
+    32:   </div>
+    33: 
+    34:   <div class="field">
+  
+app/views/appointments/_form.html.erb:31:in `block in _app_views_appointments__form_html_erb__2269926794720585060_70137981693900'
+app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__2269926794720585060_70137981693900'
+app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___3898095765473304186_70137981714040'
+app/controllers/appointments_controller.rb:42:in `block (2 levels) in create'
+app/controllers/appointments_controller.rb:37:in `create'
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 20:12:37 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  Rendered appointments/_form.html.erb (6.4ms)
+  Rendered appointments/new.html.erb within layouts/application (10.0ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 3, expected 5..7)):
+    28: 
+    29:   <div class="field">
+    30:     <%= form.label :user_id %>
+    31:     <%= collection_select(@users, :id, :name) %>
+    32:   </div>
+    33: 
+    34:   <div class="field">
+  
+app/views/appointments/_form.html.erb:31:in `block in _app_views_appointments__form_html_erb__2269926794720585060_70138017392520'
+app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__2269926794720585060_70138017392520'
+app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___3898095765473304186_70138017426240'
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 20:12:46 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/appointments/_form.html.erb:31
+  [1m[36mDoctor Load (0.8ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/appointments/_form.html.erb:36
+  Rendered appointments/_form.html.erb (10.3ms)
+  Rendered appointments/new.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 102ms (Views: 94.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/appointments/new" for 127.0.0.1 at 2018-05-16 20:20:38 +0100
+Processing by AppointmentsController#new as HTML
+  Rendering appointments/new.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/appointments/_form.html.erb:31
+  [1m[36mDoctor Load (0.8ms)[0m  [1m[34mSELECT "doctors".* FROM "doctors"[0m
+  ↳ app/views/appointments/_form.html.erb:36
+  Rendered appointments/_form.html.erb (8.6ms)
+  Rendered appointments/new.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 94ms (Views: 88.6ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/appointments" for 127.0.0.1 at 2018-05-16 20:20:44 +0100
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tFuELvloSu+Wze8olvTwMl0kFrwDBlRwxLf7jSnb+kd/eFc98nt6cRvPRFj1iH7c5uBgeIKyj21pkYpPUDqeFw==", "appointment"=>{"reason"=>"Stuff", "length"=>"5", "important"=>"0", "user_id"=>"1", "doctor_id"=>"1"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[36mDoctor Load (0.6ms)[0m  [1m[34mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[36mAppointment Create (8.7ms)[0m  [1m[32mINSERT INTO "appointments" ("reason", "length", "important", "user_id", "doctor_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["reason", "Stuff"], ["length", 5], ["important", false], ["user_id", 1], ["doctor_id", 1], ["created_at", "2018-05-16 19:20:44.460411"], ["updated_at", "2018-05-16 19:20:44.460411"]]
+  ↳ app/controllers/appointments_controller.rb:38
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/appointments_controller.rb:38
+Redirected to http://localhost:3000/appointments/1
+Completed 302 Found in 77ms (ActiveRecord: 13.4ms)
+
+
+Started GET "/appointments/1" for 127.0.0.1 at 2018-05-16 20:20:44 +0100
+Processing by AppointmentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAppointment Load (1.1ms)[0m  [1m[34mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/appointments_controller.rb:75
+  Rendering appointments/show.html.erb within layouts/application
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/appointments/show.html.erb:20
+  [1m[36mDoctor Load (0.4ms)[0m  [1m[34mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/appointments/show.html.erb:25
+  Rendered appointments/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 67ms (Views: 44.4ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/appointments" for 127.0.0.1 at 2018-05-16 20:22:12 +0100
+Processing by AppointmentsController#index as HTML
+  Rendering appointments/index.html.erb within layouts/application
+  [1m[36mAppointment Load (0.5ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments"[0m
+  ↳ app/views/appointments/index.html.erb:18
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/appointments/index.html.erb:23
+  [1m[36mDoctor Load (0.6ms)[0m  [1m[34mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/appointments/index.html.erb:24
+  Rendered appointments/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 62ms (Views: 43.3ms | ActiveRecord: 1.5ms)
+
+
