@@ -1,24 +1,50 @@
-# README
+# Association
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### General
 
-Things you may want to cover:
+This project was to show how to associate 3 different controllers. It was created using the rails scaffold command.
 
-* Ruby version
+Doctor:
 
-* System dependencies
+``` ruby
+has_many :appointments
+has_many :users, :through => :appointments
+```
 
-* Configuration
+User:
 
-* Database creation
+``` ruby
+has_many :appointments
+has_many :physicians, :through => :appointments
+```
 
-* Database initialization
+Appointment:
 
-* How to run the test suite
+``` ruby
+belongs_to :user
+belongs_to :doctor
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
+---
+
+### Cloning
+
+You will need ruby (v 2.5.1) for this calculator to work.
+
+You will also need to run the command:
+```
+bundle
+```
+or
+```
+bundle install
+```
+to use the gems I have in this project.
+
+You will then need to create a database to hold your users on by running:
+```
+rails db:create
+```
