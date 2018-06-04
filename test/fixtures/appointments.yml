@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reason: MyString
+  length: 1
+  important: false
+  user: one
+  doctor: one
+
+two:
+  reason: MyString
+  length: 1
+  important: false
+  user: two
+  doctor: two
